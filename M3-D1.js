@@ -1,42 +1,167 @@
 /* 1. Create a function to calculate the sum of the two given integers. If the two values are the same, return triple their sum. */
+ const sumTwoInt = function (a, b) {
+    if (typeof a === "number" && typeof b === "number") {
+      if (a === b) {
+        return (a + b) * 3;
+      } else {
+        return a + b;
+      }
+    } else {return "One of the parameters is not a number"}   
+ }
+
+ console.log(sumTwoInt(2, 2))
 
 
 /* 2. Create a function to check two given integers. Return `true` if one of them is 50 or if their sum is 50. */
 
+const checkIfIs50 = function(a, b){
+    if (typeof a === "number" && typeof b === "number") {
+        if (a === 50 || b === 50 || a + b === 50) {
+            return true
+        } else {return false}
+    } else {
+      return "One of the parameters is not a number";
+    }  
+}
+
+console.log(checkIfIs50(25, 50));
 
 /* 3. Create a function to remove a character at a specified position from a given string: pass the position and the string as parameters, return the new string. */
 
+const removeChar = function (str, position) {
+    
+    let charToRemove = str.slice(position, position + 1);
+    let stringBeforeRemovedChar = str.slice(0, position);
+    let stringAfterRemovedChar = str.slice(position+1);
+    return stringBeforeRemovedChar.concat(stringAfterRemovedChar);
+}
+
+console.log(removeChar("Martin", 0))
 
 /* 4. Create a function to find and return the largest of three given integers. */
+/* Get Back to This One: */
+const findLargestOfThree = function (x,y,z) {    {
+    max_val = 0;
+    if (x > y)
+    {
+        max_val = x;
+    } else
+    {
+        max_val = y;
+    }
+    if (z > max_val) 
+    {
+        max_val = z;
+    }
+    return max_val;
+    }
 
+}
+ 
+console.log(findLargestOfThree(31, 1334, 51));
 
 /* 5. Create a function to check if two numbers are in the range 40-60 or 70-100. 
     Return `true` if they do, return `false` if one (or both) don't. */
 
+const checkRange = function (a, b) {
+
+    if ((a <= 60 && a >= 40 || a <= 100 && a >= 70) && (b <= 60 && b >= 40 || b <= 100 && b >= 70)) {
+        return true
+    } else {
+        return false
+    }
+}
+
+console.log(checkRange(100, 100));
 
 /* 6. Create a function to create a new string composed of a specified number of copies of a given string. 
     Pass the string and the number of copies as parameters. */
 
+const copyTextNTimes = function (text, copies) {
+    
+    let newText = ""; 
+    for (i = 0; i < copies; i++) {
+        newText += text; 
+    }
+    return newText;
+}
+
+console.log(copyTextNTimes("Bleh", 3)) 
 
 /* 7. Create a function to display the city name if the string begins with "Los" or "New". 
     Pass the city name as a parameter. Return `false` if they start with a different string. */
 
+const displayCityThatBeginsWith = function (city) {
+    let begining1 = "Los";
+    let begining2 = "New";
+
+    if (city.slice(0,3) === begining1 || city.slice(0,3) === begining2 ) {
+        return true
+    } else {
+        return false
+    }
+} 
+
+console.log(displayCityThatBeginsWith("LosddddNev York"));
 
 /* 8. Create a function to calculate and return the sum of all elements from an array with 3 elements. 
     Pass the array as a parameter. */
 
+const sumArray = function (arr) {
+    let a = 0;
+    for (i = 0; i < arr.length; i++) {
+        a += arr[i];
+    }
+    return a;
+} 
+
+console.log(sumArray([20, 40, 10]))
 
 /* 9. Create a function to test if an array of lenght 2 contains 1 OR 3. 
     Return `true` is it does, `false` if it doesn't. */
+const checkOneOrThreeInArray = function (arr) {
+    for (i=0; i < arr.length; i++) {
+        if (arr[i] === 1 || arr[i] === 3) {
+            return true
+        } 
+    }
 
+    return false; 
+}
+
+console.log(checkOneOrThreeInArray([0, 0, 0, 0,0,0,0,0,0,0,2,0,2]));
 
 /* 10. Create a function to test if an array of lenght 2 DOES NOT contain 1 or 3. 
     Return `true` if it doesn't, `false` if it does. */ 
 
+const checkOneOrThreeInArrayReversed = function (arr) {
+      for (i = 0; i < arr.length; i++) {
+        if (arr[i] === 1 || arr[i] === 3) {
+          return false;
+        }
+      }
+      return true;
+    };
+
+console.log(checkOneOrThreeInArrayReversed([2,2,2,4,5,6]));
 
 /* 11. Create a function to find the longest string from a given array of strings. 
     Pass the array as parameter and return the longest string. */ 
 
+const findLongestString = function (arr) {
+    let max = arr[0];
+
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i].length > max.length) {
+            max = arr[i];
+        }
+    }
+    return max;
+}    
+
+const myArrofStrings = ["asd", "as", "not1"];
+
+console.log(findLongestString(myArrofStrings));
 
 /* 12. Create a function to find the types of a given angle:
   1. Acute angle ⇒ between 0 and 90 degrees. Return `acute`.
@@ -47,9 +172,37 @@
     Pass the angle as a parameter.
 */
 
+const findTypeOfAngle = function(angle) {
+    
+    if (angle > 0 && angle < 90) {
+        return "acute"
+    } else if (angle === 90) {
+        return "right"
+    } else if (angle > 90 && angle < 180) {
+        return "obtuse"
+    } else if (angle === 180) {
+        return "straight"
+    } else {
+        return "Not a correct angle value"
+    }
+}
+
+console.log(findTypeOfAngle(180));
 
 /* 13. Create a function to find and return the index of the greatest element of a given array of integers that you passed as a parameter. */
 
+const findIndexOfMax = function (arr) {
+  let max = arr[0];
+
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return arr.indexOf(max);
+};  
+
+console.log(findIndexOfMax([-10, -4, -1, -2, -5]));
 
 /* 14. Create a function to find and return the largest **even** number from an array of integers that is passed a parameter. */
 
