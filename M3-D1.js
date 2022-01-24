@@ -40,25 +40,23 @@ console.log(removeChar("Martin", 0))
 
 /* 4. Create a function to find and return the largest of three given integers. */
 /* Get Back to This One: */
-const findLargestOfThree = function (x,y,z) {    {
-    max_val = 0;
-    if (x > y)
-    {
-        max_val = x;
-    } else
-    {
-        max_val = y;
-    }
-    if (z > max_val) 
-    {
-        max_val = z;
-    }
-    return max_val;
-    }
 
-}
- 
-console.log(findLargestOfThree(31, 1334, 51));
+const findLargestOfThree = function (a, b, c) {
+
+    if (a > b && b > c) {
+        return a 
+    } else if (b > a && a > c) {
+        return b
+    } else if (c > a && a > b) {
+        return c
+    } else if (b > a && c > a) {
+        return b
+    }
+} 
+
+
+console.log(findLargestOfThree(51, 31, 121));
+
 
 /* 5. Create a function to check if two numbers are in the range 40-60 or 70-100. 
     Return `true` if they do, return `false` if one (or both) don't. */
@@ -206,18 +204,60 @@ console.log(findIndexOfMax([-10, -4, -1, -2, -5]));
 
 /* 14. Create a function to find and return the largest **even** number from an array of integers that is passed a parameter. */
 
+const findMaxOfEven = function (arr) {
+  let max = 0;
+
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i] > max && arr[i] % 2 === 0) {
+      max = arr[i];
+    }
+  }
+  return max;
+};
+
+console.log(findMaxOfEven([2, 4, 5, 6, 7, 9 , 11]));
 
 /* 15. Create a function to check from two given integers (passed as parameters) if one is positive and the other is negative. 
     Return `true` if that's the case, return `false` if it's not. */
+const checkIfOneOfTwoIsPositiveAndOtherIsNegative = function(a, b) {
+    if (a < 0 && b > 0) {
+        return true
+    } else if (a > 0 && b < 0) {
+        return true
+    } else {
+        return false
+    }
+}
 
+console.log(checkIfOneOfTwoIsPositiveAndOtherIsNegative(-1, 1));
 
 /* 16. Create a function to create and return a new string where the first 3 characters and in lower case and the others are in upper case. 
     If the string's length is less than 3, convert the whole string into uppercase. Pass the original string as a parameter. */
 
+const modifyStringStrangely = function (str) {
+    if (str.length < 3) {
+        return str.toUpperCase();
+    }
+    let firstThreeChars = str.slice(0, 3).toLowerCase();
+    let restOfChars = str.slice(3).toUpperCase();
+
+    return firstThreeChars.concat(restOfChars);
+}
+
+console.log(modifyStringStrangely("strive"));
 
 /* 17. Create a function to calculate the sum of two integers (passed as parameters). 
     If the sum is in the 50-80 range, return `65`, otherwise, return `80`. */
+const sumSomeNumbersInRange = function (a, b) {
+    let sum = a + b; 
+    if (sum > 50 && sum < 80) {
+        return "`65`"
+    } else {
+        return "`80`"
+    }
+}
 
+console.log(sumSomeNumbersInRange(1, 52));
 
 /* 18. Create a function to convert a number (passed as a parameter) into a string, basing yourself on this example: 
     The number has 3 as a factor ⇒ return `Diego`
@@ -227,6 +267,46 @@ console.log(findIndexOfMax([-10, -4, -1, -2, -5]));
     ⚠️ The factor is an integer which evenly divides a number without leaving a remainder. One number can have more than one factor, in that case you should return both names. 
 Ex. 15 has both 3 and 5 has factors: the function will return `DiegoRiccardo` */
 
+const strangeFunction18 = function (x) {
+    let is3Factor = x % 3 === 0;
+    let is5Factor = x % 5 === 0;
+    let is7Factor = x % 7 === 0;
+
+    if (is3Factor && is5Factor && is7Factor) {
+      return "DiegoRiccardoStefano";
+    } else if (is3Factor && is5Factor) {
+      return "DiegoRiccardo";
+    } else if (is3Factor && is7Factor) {
+      return "DiegoStefano";
+    } else if (is5Factor && is7Factor) {
+      return "StefanoRiccardo";
+    } else if (is3Factor) {
+      return "Diego";
+    } else if (is5Factor) {
+      return "Riccardo";
+    } else if (is7Factor) {
+      return "Stefano";
+    } else {
+        return x; 
+    }    
+}
+
+console.log(strangeFunction18(42));
 
 /* 19. Create a function that that takes a phrase as a parameter and returns its acronym.
 Ex. British Broadcasting Corporation returns `BBC` */
+
+const getAcronym = function (str) {
+    let arr = str.split(" ");
+    let acronym = [];
+    
+    for (i = 0; i < arr.length; i++) {
+        acronym.push(arr[i].charAt(0).toUpperCase());
+    }
+    return acronym.join("");    
+}
+
+
+let string1 = "british boring corporation";
+
+console.log(getAcronym(string1));
