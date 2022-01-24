@@ -30,13 +30,13 @@ console.log(checkIfIs50(25, 50));
 
 const removeChar = function (str, position) {
     
-    let charToRemove = str.slice(position, position + 1);
+    //let charToRemove = str.slice(position, position + 1);
     let stringBeforeRemovedChar = str.slice(0, position);
     let stringAfterRemovedChar = str.slice(position+1);
     return stringBeforeRemovedChar.concat(stringAfterRemovedChar);
 }
 
-console.log(removeChar("Martin", 0))
+console.log(removeChar("Martin", 1))
 
 /* 4. Create a function to find and return the largest of three given integers. */
 /* Get Back to This One: */
@@ -55,7 +55,7 @@ const findLargestOfThree = function (a, b, c) {
 } 
 
 
-console.log(findLargestOfThree(51, 31, 121));
+console.log(findLargestOfThree(5, 30, 2));
 
 
 /* 5. Create a function to check if two numbers are in the range 40-60 or 70-100. 
@@ -113,7 +113,7 @@ const sumArray = function (arr) {
     return a;
 } 
 
-console.log(sumArray([20, 40, 10]))
+console.log(sumArray([20, 40, 10, 10]))
 
 /* 9. Create a function to test if an array of lenght 2 contains 1 OR 3. 
     Return `true` is it does, `false` if it doesn't. */
@@ -123,7 +123,6 @@ const checkOneOrThreeInArray = function (arr) {
             return true
         } 
     }
-
     return false; 
 }
 
@@ -291,7 +290,7 @@ const strangeFunction18 = function (x) {
     }    
 }
 
-console.log(strangeFunction18(42));
+console.log(strangeFunction18(105));
 
 /* 19. Create a function that that takes a phrase as a parameter and returns its acronym.
 Ex. British Broadcasting Corporation returns `BBC` */
@@ -315,64 +314,101 @@ console.log(getAcronym(string1));
 
 /* 1. Given a string (as a parameter), return the character that is most commonly used. */
  
-const findMostUsedChar = function (str) {
-    let arrOfChars = str.split("");
 
-    return arrOfChars
-}   
 
-console.log(findMostUsedChar("Martinnnn"));
+/* STRIVE Solution */
 
-/* DOWNLOADED FROM: https://www.geeksforgeeks.org/return-maximum-occurring-character-in-the-input-string/ */
-
-let ASCII_SIZE = 256;
-
-function getMaxOccuringChar(str) {
-  // Create array to keep the count of individual
-  // characters and initialize the array as 0
-  let count = new Array(ASCII_SIZE);
-  for (let i = 0; i < ASCII_SIZE; i++) {
-    count[i] = 0;
+function maxChar(str) {
+  let maxLength = 0;
+  let maxChar = "";
+  
+  let strArr = str.split("")
+  console.log(strArr)
+  for (let i = 0; i < strArr.length; i++) {
+      let currChar = strArr[i]
+      let currLength = str.split(currChar).length
+      if(currLength > maxLength){
+          maxLength = currLength
+          maxChar = currChar
+      }
   }
+  return maxChar
+};
 
-  console.log(count);
-
-  // Construct character count array from the input
-  // string.
-  let len = str.length;
-  for (let i = 0; i < len; i++) {
-    count[str[i].charCodeAt(0)] += 1;
-  }
-  let max = -1; // Initialize max count
-  let result = " "; // Initialize result
-
-  // Traversing through the string and maintaining
-  // the count of each character
-  for (let i = 0; i < len; i++) {
-    if (max < count[str[i].charCodeAt(0)]) {
-      max = count[str[i].charCodeAt(0)];
-      result = str[i];
-    }
-  }
-  return result;
-}
-
-console.log(getMaxOccuringChar("Martiiinn"));
+console.log(maxChar("aabac"));
 
 /* 2. Check if two strings (passed as parameters) are anagrams of each other. 
     Do not consider spaces or punctuation, make the whole word lower case. 
     Return `true` if the words are anagram, return `false` if they aren't. */
+const checkIfAnagrams = function (word1, word2) {
+    let w1Sorted = word1.split("").sort().join("");
+    let w2Sorted = word2.split("").sort().join("");
+    
+    if (w1Sorted == w2Sorted) {
+        return true
+    }
 
+    return false
+}
+
+console.log(checkIfAnagrams("b2ored", "robed"))
 
 /* 3. Given a word and a list of possible anagrams (both passed as parameters), return the correct list of anagrams: 
     Ex. "listen" is the word, ["enlist", "google", "inlets"] are the possibilities: the output should be ["enlist", "inlets"]
 */
 
+const checkAnagrams = function (str, arr) {
+    let stringSorted = str.split("").sort().join("");
+    let newArr = [];
+
+    for (i=0; i<arr.length; i++) {
+        if (stringSorted === arr[i].split("").sort().join("")) {
+            newArr.push(arr[i]);
+        }
+    }
+    return newArr;
+};
+
+console.log(checkAnagrams("listen", ["enlist", "google", "inlets", "nieanagram", "netisl"]))
+
+
+
 /* 4. Given a string (as parameter), return `true` if the string is a palindrome or `false` if it is not. Include spaces and punctuation. */
+
+const checkPalindrome = function (str) {
+    
+    let middle = Math.floor(str.length / 2); 
+    console.log(middle)
+    
+    for (i = 0; i < middle; i++) {
+        /* console.log(str[i])
+        console.log(str[str.length-(i+1)]) */
+      if (str[i].toLowerCase() !== str[str.length - (i + 1)].toLowerCase()) {
+        return false;
+      }
+    }
+
+    return true
+};
+
+console.log(checkPalindrome("redivider"));
 
 
 /* 5. Given an integer (as parameter), return an integer which digitas are the same as the original number, but reversed.
     Ex: 189 â‡’ 981 */
+const reverseNumber = function (x) {
+    let convertedToString = x.toString().split("");
+    let tempArr = [];
+    for (i=0; i<convertedToString.length; i++) {
+        tempArr.push(convertedToString[(convertedToString.length-(i+1))]);
+    }
+
+       
+    return parseInt(tempArr.join(""));
+}
+
+console.log(reverseNumber(189));
+
 
 
 /* 6. Write a function that takes a positive number X as a parameter. The function should output (as console.log) a step shaped string with X level usign the `#` character. Make sure the steps are on the right hand side:
@@ -391,9 +427,31 @@ console.log(getMaxOccuringChar("Martiiinn"));
         '####'
 */ 
 
+const drawHashes = function(n){
+    let hash = "";
+    
+    for(i=0; i<=n; i++) {
+        console.log(hash+="#");
+    }
+}
+
+drawHashes(4);
+
 
 /* 7. Create a function that, given a string as a parameter, returns a new string which is the original string, but reversed: 
 "hello" â‡’ "olleh" */
+
+const reverseString = function (str) {
+  let arr = str.split("");
+  let newArr = [];
+  for (i = 0; i < arr.length; i++) {
+    newArr.push(arr[arr.length - (i + 1)]);
+  }
+
+  return newArr.join("");
+};
+
+console.log(reverseString("martin"));
 
 
 /* 8. Create a function that takes an array and a "chuck size" as parameters. 
@@ -401,6 +459,21 @@ console.log(getMaxOccuringChar("Martiiinn"));
     array: [1, 2, 3, 4], chunk size: 2 â†’ [[ 1, 2], [3, 4]]
     array: [1, 2, 3, 4, 5], chunk size: 4 â†’ [[ 1, 2, 3, 4], [5]]
 */
+
+const chunkArray = function(arr, chunk) {
+       
+    let newArr = [];    
+    for (i = 0; i < arr.length; i+= chunk) {
+         newArr.push(arr.slice(i, i + chunk));
+    }
+
+    return newArr;
+}
+
+let arr8 = [1, 2, 3, 4, 5, 6];
+let arr9 = [1, 2, 3, 4, 5];
+
+console.log(chunkArray(arr8, 2))
 
 
 /* 9. Write a function that accepts a positive number X as parameter. 
@@ -414,7 +487,20 @@ Example with X = 3
 ```
 */
 
+const drawPiramid = function (n) {
+    let hash = "";
+    let dot = "";
 
+    for (i=0; i<=n; i++) {
+        for (j = Math.floor(n / 2); j > 0; j--) {
+          dot += ".";
+        }
+        hash += "#"
+        console.log(dot + hash + dot)
+    }
+}
+
+drawPiramid(4);
 
 /* 10. Write a function that accepts an integer N and returns a NxN spiral matrix:
 Ex: 
@@ -433,3 +519,9 @@ N = 4
 [10,  9,  8, 7]]
 
 */
+
+/* SOLUTION EXPLAINED HERE: https://code.likeagirl.io/create-a-nxn-matrix-spiral-with-javascript-955ee18402f7 */
+
+const reutrnMatrix = function(n) {
+
+}
